@@ -1,0 +1,84 @@
+{
+  "name": "siswa",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nis": {
+      "type": "number",
+      "required": true
+    },
+    "nama_lengkap": {
+      "type": "string",
+      "required": true
+    },
+    "jenis_kelamin": {
+      "type": "string",
+      "required": true
+    },
+    "alamat": {
+      "type": "string",
+      "required": true
+    },
+    "nama_ayah": {
+      "type": "string",
+      "required": true
+    },
+    "nama_ibu": {
+      "type": "string",
+      "required": true
+    },
+    "alamat_ortu": {
+      "type": "string",
+      "required": true
+    },
+    "nohp": {
+      "type": "number",
+      "required": true
+    },
+    "tanggal_masuk": {
+      "type": "date",
+      "required": true
+    },
+    "kelas_awal": {
+      "type": "string",
+      "required": true
+    },
+    "generasi": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "matapelajarans": {
+      "type": "hasMany",
+      "model": "matapelajaran",
+      "foreignKey": "siswaId",
+      "through": "nilai"
+    },
+    "mapels": {
+      "type": "hasMany",
+      "model": "matapelajaran",
+      "foreignKey": "siswaId",
+      "through": "absen"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}
